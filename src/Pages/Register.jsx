@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import LogoImg from "../../public/logo.png";
 import bgVideo from "../assets/bgVideo.webm";
 import api from "../Api";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 export default function Register() {
   const navigator = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { user, setUser } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      navigator("/dashboard")
+    }
+  }, [])
 
   const handleRegister = (e) => {
     e.preventDefault();

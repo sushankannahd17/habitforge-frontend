@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LogoImg from "../../public/logo.png";
 import bgVideo from "../assets/bgVideo.webm";
 import toast from "react-hot-toast";
 import api from "../Api";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 export default function Login() {
+  const navigator = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { user, setUser } = useAuth();
+
+  useEffect(() => {
+    if (user.userID) navigator("/dashboard");
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -22,11 +30,21 @@ export default function Login() {
     if (email && password) {
       toast.promise(api.post("/auth/login", { email, password }), {
         loading: "Loading, please wait",
-        success: "Logged in Successfully",
-        error: (err) => err.response?.data?.message
-      })
+        success: (res) => {
+          const response = res.data;
+          setUser({
+            userID: response.userID,
+            name: response.name,
+            email: response.email,
+          });
+          setTimeout(() => navigator("/dashboard"), 3000);
+
+          return "Logged in Successfully";
+        },
+        error: (err) => err.response?.data?.message,
+      });
     }
-  }
+  };
 
   return (
     <>
