@@ -14,9 +14,6 @@ export default function Sidebar() {
   const { user, setUser } = useAuth();
 
   const navigator = useNavigate();
-
-
-    console.log(user)
   const handleLogout = () => {
     setTimeout(() => {
       api.post("/auth/logout");
@@ -67,8 +64,8 @@ export default function Sidebar() {
         <div className="absolute flex bottom-10 h-16 ml-2">
           <img src={profilePic} className="h-20 rounded-4xl" />
           <div>
-            <p className="inter-para ml-5 mt-4 text-xl">{user.name}</p>
-            <p className="inter-para ml-5 text-gray-400 mt-1" style={{fontSize: "14px"}}>{user.email}</p>
+            <p className="inter-para ml-5 mt-4 text-xl" style={{fontSize: "17px"}}>{user.name}</p>
+            <p className="inter-para ml-5 text-gray-400 mt-1" style={{fontSize: "11px"}}>{user.email}</p>
           </div>
           <button onClick={handleLogout}>
             <FiLogOut className="mt-8 ml-4" size={20} />
