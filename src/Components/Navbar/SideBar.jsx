@@ -12,66 +12,62 @@ import useAuth from "../../Hooks/useAuth";
 
 export default function Sidebar() {
   const { user, setUser } = useAuth();
+  const navigate = useNavigate();
 
-  const navigator = useNavigate();
   const handleLogout = () => {
-    setTimeout(() => {
-      api.post("/auth/logout");
-      toast.promise(api.post("/auth/logout"), {
-        loading: "Please wait....",
-        success: () => {
-            setUser({userID: null, name: "", email: ""});
-
-            setTimeout(() => navigator("/"), 2500)
-
-            return "Logged Out Successfully";
-        },
-        error: (err) => err.response?.data?.message
-      })
-      navigator("/");
-    }, 2500);
+    toast.promise(api.post("/auth/logout"), {
+      loading: "Logging out...",
+      success: () => {
+        setUser({ userID: null, name: "", email: "" });
+        navigate("/");
+        return "Logged out successfully";
+      },
+      error: (err) => err.response?.data?.message,
+    });
   };
 
   return (
-    <div className="w-[15%] min-h-screen bg-white">
-      <a href="#" className="flex items-center mt-10 ml-5">
+    <aside className="hidden md:flex w-64 min-h-screen bg-[#F8FAFF] border-white flex-col px-6 py-6">
+      <div className="flex items-center mb-10">
         <img src={logoImg} className="h-16 block" />
-        <p className="poppins-semibold text-[#003B77] text-3xl">Habit</p>
-        <p className="poppins-bold text-[#5AA50B] text-3xl">Forge</p>
-      </a>
-
-      <a className="ml-10 flex mt-10">
-        <CiGrid42 size={40} className="mt-2" />
-        <p className="text-2xl mt-3 ml-4">Dashboard</p>
-      </a>
-
-      <a className="ml-10 flex mt-10">
-        <RiListCheck3 size={40} className="mt-2" />
-        <p className="text-2xl mt-3 ml-5">My Habits</p>
-      </a>
-
-      <a className="ml-10 flex mt-10">
-        <VscGraph size={40} className="mt-2" />
-        <p className="text-2xl mt-3 ml-6">Analytics</p>
-      </a>
-
-      <a className="ml-10 flex mt-10">
-        <FaGear size={40} className="mt-2" />
-        <p className="text-2xl mt-3 ml-6">Settings</p>
-      </a>
-
-      <div className="flex bottom">
-        <div className="absolute flex bottom-10 h-16 ml-2">
-          <img src={profilePic} className="h-20 rounded-4xl" />
-          <div>
-            <p className="inter-para ml-5 mt-4 text-xl" style={{fontSize: "17px"}}>{user.name}</p>
-            <p className="inter-para ml-5 text-gray-400 mt-1" style={{fontSize: "11px"}}>{user.email}</p>
-          </div>
-          <button onClick={handleLogout}>
-            <FiLogOut className="mt-8 ml-4" size={20} />
-          </button>
-        </div>
+        <p className="poppins-semibold text-[#003B77] text-xl">Habit</p>
+        <p className="poppins-bold text-[#5AA50B] text-xl">Forge</p>
       </div>
+
+      <nav className="flex flex-col gap-2 flex-1">
+        <MenuItem icon={<CiGrid42 />} label="Dashboard"/>
+        <MenuItem icon={<RiListCheck3 />} label="Habits" />
+        <MenuItem icon={<VscGraph />} label="Analytics" />
+        <MenuItem icon={<FaGear />} label="Settings" />
+      </nav>
+
+      <div className="flex items-center gap-3 pt-6 border-t">
+        <img src={profilePic} className="h-10 w-10 rounded-full" />
+        <div className="flex-1">
+          <p className="text-sm font-medium">{user.name}</p>
+          <p className="text-xs text-gray-400">{user.email}</p>
+        </div>
+        <button onClick={handleLogout}>
+          <FiLogOut size={18} />
+        </button>
+      </div>
+    </aside>
+  );
+}
+
+function MenuItem({ icon, label, active }) {
+  return (
+    <div
+      className={`flex items-center mb-3 gap-3 px-3 py-2 rounded-lg cursor-pointer
+        ${
+          active
+            ? "bg-blue-100 text-blue-600"
+            : "text-gray-700 hover:bg-gray-100"
+        }
+      `}
+    >
+      <span className="text-lg">{icon}</span>
+      <span className="text-2xl font-medium">{label}</span>
     </div>
   );
 }

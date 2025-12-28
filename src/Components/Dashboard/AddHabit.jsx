@@ -54,7 +54,8 @@ export default function AddHabit() {
           userID: user?.userID,
           name: habitName,
           description,
-          categoryID: selectedCategory._id,
+          categoryIcon: selectedCategory.icon,
+          categoryName: selectedCategory.name,
           schedule: {
             frequency,
             repeatOn,
@@ -66,8 +67,14 @@ export default function AddHabit() {
           },
           isEnabled: true,
         })
-        .then(() => {toast.success("Created habit"); setOpen(false)})
-        .catch((err) => toast.error(err.response?.data?.message));
+        .then(() => {
+          toast.success("Created habit");
+          setOpen(false);
+        })
+        .catch((err) => {
+          const msg = err.response?.data?.message;
+          toast.error(typeof msg === "string" ? msg : "Something went wrong");
+        });
     }
   };
 
