@@ -20,7 +20,6 @@ export default function Chooser({ selectedCategory, setSelectedCategory }) {
 
   const selectedValueTemplate = (option) => {
     if (!option) return <i/>;
-    console.log(selectedCategory);
 
     return (
       <div className="flex align-items-center gap-2">
