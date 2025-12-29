@@ -13,7 +13,7 @@ export default function Hero() {
 
   return (
     <div className="h-200 bg-[#F7F8FA]">
-      <div className="flex">
+      <div className="flex justify-center">
         <div className="w-1/4 flex-col xl:flex-row mt-36 ml-58">
           <h1 className="inter-heading text-6xl">
             Build better habits, one day at a time.

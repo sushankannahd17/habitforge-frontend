@@ -84,7 +84,7 @@ export default function AddHabit() {
         className="ml-auto w-30 mt-10 mr-20 h-10 bg-[#5B6CFF] text-white"
         onClick={() => setOpen(!open)}
       >
-        + Add Habit
+        + New Habit
       </button>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
         <DialogBackdrop
@@ -303,7 +303,7 @@ export default function AddHabit() {
                         <div className="h-0.5 mt-3 w-full bg-gray-300"></div>
 
                         <div className="mt-4 w-full flex justify-end">
-                          <button className="mr-10" type="button">
+                          <button className="mr-10" type="button" onClick={() => setOpen(false)}>
                             Cancel
                           </button>
                           <button

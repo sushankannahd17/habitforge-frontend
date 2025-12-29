@@ -14,7 +14,8 @@ export default function Sidebar() {
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     toast.promise(api.post("/auth/logout"), {
       loading: "Logging out...",
       success: () => {
@@ -35,7 +36,7 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex flex-col gap-2 flex-1">
-        <MenuItem icon={<CiGrid42 />} label="Dashboard"/>
+        <MenuItem icon={<CiGrid42 />} label="Dashboard" />
         <MenuItem icon={<RiListCheck3 />} label="Habits" />
         <MenuItem icon={<VscGraph />} label="Analytics" />
         <MenuItem icon={<FaGear />} label="Settings" />
@@ -47,8 +48,9 @@ export default function Sidebar() {
           <p className="text-sm font-medium">{user.name}</p>
           <p className="text-xs text-gray-400">{user.email}</p>
         </div>
+
         <button onClick={handleLogout}>
-          <FiLogOut size={18} />
+          <FiLogOut size={20} />
         </button>
       </div>
     </aside>
