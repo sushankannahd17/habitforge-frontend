@@ -6,11 +6,12 @@ import { FaGear } from "react-icons/fa6";
 import profilePic from "../../assets/profilePic.jpg";
 import { FiLogOut } from "react-icons/fi";
 import api from "../../Api";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 
 export default function Sidebar() {
+  const location = useLocation();
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -36,10 +37,10 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex flex-col gap-2 flex-1">
-        <MenuItem icon={<CiGrid42 />} label="Dashboard" />
-        <MenuItem icon={<RiListCheck3 />} label="Habits" />
-        <MenuItem icon={<VscGraph />} label="Analytics" />
-        <MenuItem icon={<FaGear />} label="Settings" />
+        <MenuItem icon={<CiGrid42 />} label="Dashboard" active={location.pathname === "/dashboard"}/>
+        <MenuItem icon={<RiListCheck3 />} label="Habits" active={location.pathname === "/habits"}/>
+        <MenuItem icon={<VscGraph />} label="Analytics" active={location.pathname === "/analytics"}/>
+        <MenuItem icon={<FaGear />} label="Settings" active={location.pathname === "/settings"}/>
       </nav>
 
       <div className="flex items-center gap-3 pt-6 border-t">

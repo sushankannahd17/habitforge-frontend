@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Sidebar from "../Components/Navbar/SideBar";
 import useAuth from "../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import AddHabit from "../Components/Dashboard/AddHabit";
+import AddHabit from "../Components/Main/AddHabit";
 import TopInfo from "../Components/Dashboard/TopInfo";
 import List from "../Components/Dashboard/List";
 

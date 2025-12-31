@@ -1,6 +1,6 @@
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { useState } from "react";
-import Chooser from "./Chooser";
+import Chooser from "../Dashboard/Chooser";
 import { IoCalendarClearOutline, IoCalendarOutline } from "react-icons/io5";
 import { RxLoop } from "react-icons/rx";
 import api from "../../Api";
