@@ -41,6 +41,8 @@ export default function AddHabit() {
   const createHabit = (e) => {
     e.preventDefault();
 
+    if (frequency == "daily") setRepeatOn(["mon", "tue", "wed", "thu", "fri", "sat", "sun"])
+
     if (!habitName) toast.error("Enter habit name");
     else if (!selectedCategory) toast.error("Select category");
     else if (!frequency) toast.error("Select frequency");
