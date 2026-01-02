@@ -6,6 +6,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import { Toaster } from "react-hot-toast";
 import Dashboard from "./Pages/Dashboard";
+import Habits from "./Pages/Habits";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/habits" element={<Habits />} />
         </Routes>
       </BrowserRouter>
     </>
