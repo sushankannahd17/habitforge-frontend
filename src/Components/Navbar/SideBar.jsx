@@ -37,10 +37,10 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex flex-col gap-2 flex-1">
-        <MenuItem icon={<CiGrid42 />} label="Dashboard" active={location.pathname === "/dashboard"}/>
-        <MenuItem icon={<RiListCheck3 />} label="Habits" active={location.pathname === "/habits"}/>
-        <MenuItem icon={<VscGraph />} label="Analytics" active={location.pathname === "/analytics"}/>
-        <MenuItem icon={<FaGear />} label="Settings" active={location.pathname === "/settings"}/>
+        <MenuItem icon={<CiGrid42 />} label="Dashboard" active={location.pathname === "/dashboard"} ref={"/dashboard"}/>
+        <MenuItem icon={<RiListCheck3 />} label="Habits" active={location.pathname === "/habits"} ref={"/habits"}/>
+        <MenuItem icon={<VscGraph />} label="Analytics" active={location.pathname === "/analytics"} ref={"/analytics"}/>
+        <MenuItem icon={<FaGear />} label="Settings" active={location.pathname === "/settings"} ref={"/settings"}/>
       </nav>
 
       <div className="flex items-center gap-3 pt-6 border-t">
@@ -58,8 +58,9 @@ export default function Sidebar() {
   );
 }
 
-function MenuItem({ icon, label, active }) {
+function MenuItem({ icon, label, active, ref }) {
   return (
+    <a href={ref}>
     <div
       className={`flex items-center mb-3 gap-3 px-3 py-2 rounded-lg cursor-pointer
         ${
@@ -72,5 +73,6 @@ function MenuItem({ icon, label, active }) {
       <span className="text-lg">{icon}</span>
       <span className="text-2xl font-medium">{label}</span>
     </div>
+    </a>
   );
 }

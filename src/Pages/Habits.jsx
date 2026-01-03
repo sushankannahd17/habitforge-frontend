@@ -1,4 +1,4 @@
-import Search from "../Components/Habits/Search";
+import List from "../Components/Habits/List";
 import AddHabit from "../Components/Main/AddHabit";
 import Sidebar from "../Components/Navbar/SideBar";
 
@@ -20,7 +20,7 @@ export default function Habits() {
           <AddHabit />
         </div>
         <div className="pl-30 pt-10 pr-30 w-full h-30">
-            <Search />
+          <List />
         </div>
       </div>
     </div>
