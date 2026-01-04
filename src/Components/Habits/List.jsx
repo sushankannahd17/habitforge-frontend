@@ -99,7 +99,7 @@ export default function List() {
             </select>
           </div>
         </div>
-        <div className="transactions-right w-full bg-white h-210 mt-10 border-white rounded-2xl">
+        <div className="w-full bg-white mt-10 border-white rounded-2xl">
           <div className="flex ml-4 mr-4 mb-10">
             <div className="flex-1 grid grid-cols-[2fr_1fr_1fr_1fr] pl-15 items-center justify-between">
               <h1 className="mt-4 text-2xl text-gray-900">Habits</h1>
@@ -145,7 +145,7 @@ export default function List() {
                     </p>
                   </div>
                   <div className="flex gap-2 ml-auto mr-10">
-                    <UpdateHabit habitID={data._id} categories={categories} onUpdate={refetchHabits}/>
+                    <UpdateHabit habitID={data._id} categories={categories}/>
                     <button>
                       <FaList />
                     </button>
