@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import api from "../../Api";
 import useAuth from "../../Hooks/useAuth";
 import { CiSearch } from "react-icons/ci";
+import toast from "react-hot-toast";
 
 function titleCase(str) {
   return str
@@ -28,6 +29,16 @@ export default function List() {
   const endIndex = startIndex + pageSize;
   const pageData = habitData.slice(startIndex, endIndex);
   const totalPages = Math.ceil(habitData.length / pageSize);
+
+  const deleteHabit = (habitID) => {    
+    toast.promise(api.delete("/habits/delete", {
+      data: {habitID}
+    }), {
+      loading: "Loading, please wait...",
+      success: "Habit Delete",
+      error: (err) => {console.log(err.response); return err.response?.data?.message}
+    })
+  } 
 
   useEffect(() => {
     const fetchHabits = async () => {
@@ -82,10 +93,12 @@ export default function List() {
         </div>
         <div className="transactions-right w-full bg-white h-210 mt-10 border-white rounded-2xl">
           <div className="flex ml-4 mr-4 mb-10">
-            <h1 className="mt-4 ml-1 text-2xl text-gray-900">Transactions</h1>
-            <p className="ml-auto inline mt-4 mr-4">
-              {habitData.length} Transactions
-            </p>
+            <div className="flex-1 grid grid-cols-[2fr_1fr_1fr_1fr] pl-15 items-center justify-between">
+              <h1 className="mt-4 text-2xl text-gray-900">Habits</h1>
+              <h1 className="mt-4 ml-25 text-2xl text-gray-900">Category</h1>
+              <h1 className="mt-4 ml-20 text-2xl text-gray-900">Schedule</h1>
+              <h1 className="mt-4 ml-22 text-2xl text-gray-900">Time</h1>
+            </div>
           </div>
           <div className="w-full h-0.5 bg-gray-300"></div>
           {pageData.map((data) => {
@@ -94,10 +107,8 @@ export default function List() {
                 <div className="w-full h-20 mt-4 ml-6 mb-4 flex">
                   <i
                     className={`text-3xl w-20 h-19 pt-5 pl-6 inline-block rounded-md ${data.categoryIcon}`}
-                    // style={{ backgroundColor: data.appearance.backgroundKey }}
                   ></i>
                   <div className="flex-1 ml-5 grid grid-cols-[2fr_1fr_1fr_1fr] items-center">
-                    {/* Name + description */}
                     <div>
                       <p className="font-medium">{data.name}</p>
                       <p className="mt-1 text-gray-500 text-sm">
@@ -105,7 +116,6 @@ export default function List() {
                       </p>
                     </div>
 
-                    {/* Category */}
                     <div className="flex justify-center">
                       <span
                         className="px-3 py-1 rounded-md text-sm"
@@ -117,7 +127,6 @@ export default function List() {
                       </span>
                     </div>
 
-                    {/* Frequency */}
                     <p className="text-center">
                       {titleCase(data.schedule.frequency)}
                     </p>
@@ -127,10 +136,16 @@ export default function List() {
                       {titleCase(data.schedule.timeOfDay)}
                     </p>
                   </div>
-                  <div className="flex mt-4 gap-2 ml-auto mr-10">
-                    <FaPencil />
-                    <FaList />
-                    <MdDelete />
+                  <div className="flex gap-2 ml-auto mr-10">
+                    <button>
+                      <FaPencil />
+                    </button>
+                    <button>
+                      <FaList />
+                    </button>
+                    <button type="button" onClick={() => deleteHabit(data._id)}>
+                      <MdDelete />
+                    </button>
                   </div>
                 </div>
                 <div className="w-full h-0.5 bg-gray-300"></div>
