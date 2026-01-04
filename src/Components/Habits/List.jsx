@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { FaPencil, FaList } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
-import api from "../../Api";
+import api from "../../api";
 import useAuth from "../../Hooks/useAuth";
 import { CiSearch } from "react-icons/ci";
 import toast from "react-hot-toast";
+import UpdateHabit from "./UpdateHabit";
 
 function titleCase(str) {
   return str
@@ -39,6 +40,13 @@ export default function List() {
       error: (err) => {console.log(err.response); return err.response?.data?.message}
     })
   } 
+
+  const refetchHabits = async () => {
+    const res = await api.get("/habits/read", {
+      params: { userID: user.userID },
+    });
+    setHabitData(res.data.habits);
+  };
 
   useEffect(() => {
     const fetchHabits = async () => {
@@ -137,9 +145,7 @@ export default function List() {
                     </p>
                   </div>
                   <div className="flex gap-2 ml-auto mr-10">
-                    <button>
-                      <FaPencil />
-                    </button>
+                    <UpdateHabit habitID={data._id} categories={categories} onUpdate={refetchHabits}/>
                     <button>
                       <FaList />
                     </button>

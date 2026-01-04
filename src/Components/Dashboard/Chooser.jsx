@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../../Api";
+import api from "../../api";
 import { Dropdown } from "primereact/dropdown";
 
 export default function Chooser({ selectedCategory, setSelectedCategory }) {
@@ -19,7 +19,7 @@ export default function Chooser({ selectedCategory, setSelectedCategory }) {
   };
 
   const selectedValueTemplate = (option) => {
-    if (!option) return <i/>;
+    if (!option) return <i />;
 
     return (
       <div className="flex align-items-center gap-2">
@@ -33,7 +33,7 @@ export default function Chooser({ selectedCategory, setSelectedCategory }) {
       value={selectedCategory}
       onChange={(e) => setSelectedCategory(e.value)}
       options={categories}
-      optionLabel="key"
+      optionLabel="_id"
       itemTemplate={items}
       valueTemplate={selectedValueTemplate}
       className="w-[19%]"

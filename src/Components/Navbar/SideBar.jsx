@@ -5,7 +5,7 @@ import { VscGraph } from "react-icons/vsc";
 import { FaGear } from "react-icons/fa6";
 import profilePic from "../../assets/profilePic.jpg";
 import { FiLogOut } from "react-icons/fi";
-import api from "../../Api";
+import api from "../../api";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
