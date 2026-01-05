@@ -23,13 +23,10 @@ export default function List() {
   const [categories, setCategories] = useState([]);
 
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [search, setSearch] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  const pageData = habitData.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(habitData.length / pageSize);
 
   const deleteHabit = (habitID) => {    
     toast.promise(api.delete("/habits/delete", {
@@ -40,6 +37,21 @@ export default function List() {
       error: (err) => {console.log(err.response); return err.response?.data?.message}
     })
   } 
+
+  const filteredHabits = habitData.filter(habit => {
+    const matchesSearch = habit.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesCategory =
+      !selectedCategory || habit.categoryName === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  const totalPages = Math.ceil(filteredHabits.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const pageData = filteredHabits.slice(startIndex, startIndex + pageSize);
 
   const refetchHabits = async () => {
     const res = await api.get("/habits/read", {
@@ -76,6 +88,10 @@ export default function List() {
               <CiSearch className="absolute inset-y-5 inset-x-6" size={24} />
               <input
                 type="text"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
                 className="h-12 w-100 mt-2 ml-4 pl-10 border border-gray-500 rounded-md"
               />
             </div>
@@ -87,7 +103,7 @@ export default function List() {
             >
               <option value={""}>Category: All</option>
               {categories.map((data) => {
-                return <option value={data.key}>Category: {data.name}</option>;
+                return <option value={data.name}>Category: {data.name}</option>;
               })}
             </select>
             <select
