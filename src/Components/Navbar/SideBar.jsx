@@ -43,7 +43,7 @@ export default function Sidebar() {
         <MenuItem icon={<FaGear />} label="Settings" active={location.pathname === "/settings"} ref={"/settings"}/>
       </nav>
 
-      <div className="flex items-center gap-3 pt-6 border-t">
+      <div className="flex items-center gap-1 pt-6 border-t">
         <img src={profilePic} className="h-10 w-10 rounded-full" />
         <div className="flex-1">
           <p className="text-sm font-medium">{user.name}</p>
@@ -51,7 +51,7 @@ export default function Sidebar() {
         </div>
 
         <button onClick={handleLogout}>
-          <FiLogOut size={20} />
+          <FiLogOut size={12} />
         </button>
       </div>
     </aside>

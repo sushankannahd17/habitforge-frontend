@@ -7,6 +7,7 @@ import Register from "./Pages/Register";
 import { Toaster } from "react-hot-toast";
 import Dashboard from "./Pages/Dashboard";
 import Habits from "./Pages/Habits";
+import Analytics from "./Pages/Analytics";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/habits" element={<Habits />} />
+          <Route path="/analytics" element={<Analytics />}/>
         </Routes>
       </BrowserRouter>
     </>
