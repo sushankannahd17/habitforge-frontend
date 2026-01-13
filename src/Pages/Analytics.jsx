@@ -1,5 +1,6 @@
 import CompletionRate from "../Components/Analytics/CompletionRate";
 import TotalCompleted from "../Components/Analytics/TotalCompleted";
+import TopHabits from "../Components/Analytics/TopHabits";
 import Sidebar from "../Components/Navbar/SideBar";
 
 export default function Analytics() {
@@ -21,6 +22,9 @@ export default function Analytics() {
         <div className="flex gap-10">
           <CompletionRate />
           <TotalCompleted />
+        </div>
+        <div>
+          <TopHabits />
         </div>
       </div>
     </div>
