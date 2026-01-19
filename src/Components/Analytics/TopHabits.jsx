@@ -18,8 +18,6 @@ export default function TopHabits() {
     fetchTopHabits();
   }, []);
 
-  console.log(topHabits);
-
   return (
     <div className="w-5/12 bg-white ml-30 mt-10 rounded-lg">
       <h1 className="inter-heading text-3xl pt-5 pl-5">Top Habits</h1>

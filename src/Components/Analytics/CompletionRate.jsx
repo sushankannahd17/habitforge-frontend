@@ -13,7 +13,7 @@ export default function CompletionRate() {
         userID: user.userID,
       });
 
-      setCompletionRate(rate.data.message);
+      setCompletionRate(rate.data.message.toFixed(2));
     };
 
     getRate()

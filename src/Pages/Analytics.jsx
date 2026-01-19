@@ -1,6 +1,7 @@
 import CompletionRate from "../Components/Analytics/CompletionRate";
 import TotalCompleted from "../Components/Analytics/TotalCompleted";
 import TopHabits from "../Components/Analytics/TopHabits";
+import ActivityHistory from "../Components/Analytics/ActivityHistory";
 import Sidebar from "../Components/Navbar/SideBar";
 
 export default function Analytics() {
@@ -24,6 +25,7 @@ export default function Analytics() {
           <TotalCompleted />
         </div>
         <div>
+          <ActivityHistory />
           <TopHabits />
         </div>
       </div>
