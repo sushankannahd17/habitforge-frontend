@@ -3,7 +3,7 @@ import api from "../../api";
 import useAuth from "../../Hooks/useAuth";
 import { IoAnalytics } from "react-icons/io5";
 
-export default function CompletionRate() {
+export default function CompletionRate({ month, year }) {
   const { user } = useAuth();
   const [completionRate, setCompletionRate] = useState(0);
 
@@ -11,6 +11,8 @@ export default function CompletionRate() {
     const getRate = async () => {
       const rate = await api.post("/analytics/completionRate", {
         userID: user.userID,
+        month,
+        year,
       });
 
       setCompletionRate(rate.data.message.toFixed(2));

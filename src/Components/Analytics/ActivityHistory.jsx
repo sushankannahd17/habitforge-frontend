@@ -13,61 +13,40 @@ import { Bar } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-export default function ActivityHistory() {
+export default function ActivityHistory({ month, year }) {
   const [activityData, setActivityData] = useState([]);
   const { user } = useAuth();
 
-  const normalizeActivityData = (activityData) => {
-    const base = {
-      M: 0,
-      T: 0,
-      W: 0,
-      T2: 0,
-      F: 0,
-      S: 0,
-      S2: 0,
-    };
+  // Normalize backend data into days of month
+  const normalizeActivityData = (data) => {
+    const daysInMonth = new Date(year, month, 0).getDate();
 
-    activityData.forEach((item) => {
-      const dayIndex = item._id;
-      const count = item.count;
+    // base: { "1":0, "2":0, ..., "31":0 }
+    const base = {};
+    for (let i = 1; i <= daysInMonth; i++) {
+      base[i] = 0;
+    }
 
-      const mappedDay =
-        dayIndex === 1
-          ? "S2"
-          : dayIndex === 2
-            ? "M"
-            : dayIndex === 3
-              ? "T"
-              : dayIndex === 4
-                ? "W"
-                : dayIndex === 5
-                  ? "T2"
-                  : dayIndex === 6
-                    ? "F"
-                    : "S";
-
-      base[mappedDay] = count;
+    data.forEach((item) => {
+      const day = Number(item._id); // "20" → 20
+      base[day] = item.count;
     });
 
-    return [
-      { day: "M", value: base.M },
-      { day: "T", value: base.T },
-      { day: "W", value: base.W },
-      { day: "T", value: base.T2 },
-      { day: "F", value: base.F },
-      { day: "S", value: base.S },
-      { day: "S", value: base.S2 },
-    ];
+    return Object.keys(base).map((day) => ({
+      day,
+      value: base[day],
+    }));
   };
 
   useEffect(() => {
-    if (!user?.userID) return;
+    if (!user?.userID || !month || !year) return;
 
     const fetchActivityData = async () => {
       try {
         const result = await api.post("/analytics/activityHistory", {
           userID: user.userID,
+          month,
+          year,
         });
 
         setActivityData(normalizeActivityData(result.data.data));
@@ -77,9 +56,7 @@ export default function ActivityHistory() {
     };
 
     fetchActivityData();
-  }, [user]);
-
-  console.log(activityData);
+  }, [user, month, year]);
 
   const labels = activityData.map((d) => d.day);
   const values = activityData.map((d) => d.value);
@@ -91,7 +68,7 @@ export default function ActivityHistory() {
         data: values,
         backgroundColor: "#818cf8",
         borderRadius: 8,
-        barThickness: 36,
+        barThickness: 16,
       },
     ],
   };
@@ -101,24 +78,22 @@ export default function ActivityHistory() {
     maintainAspectRatio: false,
     plugins: {
       legend: { display: false },
-      tooltip: {
-        enabled: true,
-      },
+      tooltip: { enabled: true },
     },
     scales: {
       x: {
         grid: { display: false },
       },
       y: {
-        grid: { display: false },
-        ticks: { display: false },
         beginAtZero: true,
+        grid: { display: false },
+        ticks: { precision: 0 },
       },
     },
   };
 
   return (
-    <div className="h-64 w-[50%] bg-white mt-10 ml-30">
+    <div className="h-70 w-[80%] bg-white mt-10 ml-30 p-4">
       <Bar data={chartData} options={options} />
     </div>
   );

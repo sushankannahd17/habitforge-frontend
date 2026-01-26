@@ -3,8 +3,16 @@ import TotalCompleted from "../Components/Analytics/TotalCompleted";
 import TopHabits from "../Components/Analytics/TopHabits";
 import ActivityHistory from "../Components/Analytics/ActivityHistory";
 import Sidebar from "../Components/Navbar/SideBar";
+import PerfectDays from "../Components/Analytics/PerfectDays";
+import MonthChoose from "../Components/Main/MonthChoose";
+import StreakCount from "../Components/Analytics/StreakCount"
+
+import { useState } from "react";
 
 export default function Analytics() {
+  const [month, setMonth] = useState(1);
+  const [year, setYear] = useState(2026)
+
   return (
     <div className="min-h-screen w-full bg-[#F7F8FA] flex">
       <Sidebar />
@@ -18,15 +26,18 @@ export default function Analytics() {
             >
               Track your progress and spot trends
             </p>
+            <MonthChoose month={month} year={year} setMonth={setMonth} setYear={setYear}/>
           </div>
         </div>
         <div className="flex gap-10">
-          <CompletionRate />
+          <CompletionRate month={month} year={year}/>
+          <StreakCount />
           <TotalCompleted />
+          <PerfectDays month={month} year={year}/>
         </div>
         <div>
-          <ActivityHistory />
-          <TopHabits />
+          <ActivityHistory month={month} year={year}/>
+          <TopHabits month={month} year={year}/>
         </div>
       </div>
     </div>

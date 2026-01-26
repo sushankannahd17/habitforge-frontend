@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../api";
 import useAuth from "../../Hooks/useAuth";
 
-export default function TopHabits() {
+export default function TopHabits({ month, year }) {
   const { user } = useAuth();
   const [topHabits, setTopHabits] = useState([]);
 
@@ -10,13 +10,15 @@ export default function TopHabits() {
     const fetchTopHabits = async () => {
       const data = await api.post("/analytics/topHabits", {
         userID: user.userID,
+        month,
+        year
       });
 
       setTopHabits(data.data.data);
     };
 
     fetchTopHabits();
-  }, []);
+  }, [user, month, year]);
 
   return (
     <div className="w-5/12 bg-white ml-30 mt-10 rounded-lg">
@@ -24,7 +26,6 @@ export default function TopHabits() {
 
       {topHabits.map((habit, index) => (
         <div key={habit.habitName || index} className="px-6 mt-5">
-          {/* Habit Row */}
           <div className="flex items-center gap-4">
             <i
               className={`text-2xl w-12 h-12 flex items-center justify-center rounded-md ${habit.categoryIcon}`}
@@ -36,7 +37,6 @@ export default function TopHabits() {
                 <p className="text-sm font-semibold">{habit.percent}%</p>
               </div>
 
-              {/* Progress Bar */}
               <div className="w-full bg-gray-200 h-2 rounded-full mt-2">
                 <div
                   className="h-2 rounded-full transition-all duration-300"
