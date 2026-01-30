@@ -1,50 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import LogoImg from "../../public/logo.png";
 import bgVideo from "../assets/bgVideo.webm";
-import toast from "react-hot-toast";
 import api from "../api";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../Hooks/useAuth";
 
-export default function Login() {
-  const navigator = useNavigate();
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { user, setUser } = useAuth();
+  const navigator = useNavigate();
 
-  useEffect(() => {
-    if (user.userID) navigator("/dashboard");
-  }, []);
-
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!email) {
       toast("⚠️Enter your email");
     }
-
-    if (!password) {
-      toast("⚠️Enter your password");
-    }
-
-    if (email && password) {
-      toast.promise(api.post("/auth/login", { email, password }), {
+    else {
+      toast.promise(api.post("/auth/genOTP", { email }), {
         loading: "Loading, please wait",
         success: (res) => {
-          const response = res.data;
-          setUser({
-            userID: response.userID,
-            name: response.name,
-            email: response.email,
-          });
-          setTimeout(() => navigator("/dashboard"), 3000);
+          navigator("/verify-otp", {state: {email}});
 
-          return "Logged in Successfully";
+          return "OTP sent Successfully";
         },
         error: (err) => err.response?.data?.message,
       });
     }
-  };
+  }
 
   return (
     <>
@@ -57,14 +39,14 @@ export default function Login() {
             </p>
             <p className="poppins-bold text-[#5AA50B] text-3xl mt-2">Forge</p>
           </a>
-          <form onSubmit={handleLogin}>
-            <div className="w-full lg:w-2/3 bg-gray-400/30 mt-40 pt-10 h-150 ml-6 pr-4 flex items-start justify-center">
+          <form onSubmit={handleSubmit}>
+            <div className="w-full lg:w-2/3 bg-gray-400/30 mt-40 pt-10 h-100 ml-6 pr-4 flex items-start justify-center">
               <div className="pl-4">
                 <h1 className="inter-heading text-4xl text-black">
-                  Welcome Back
+                  Forgot your password?
                 </h1>
                 <p className="inter-para text-xl text-gray-400 mt-4">
-                  Enter your email to sign in to your account
+                  Enter your email
                 </p>
                 <div className="email mt-10">
                   <label className="inter-para text-black">Email</label>
@@ -77,35 +59,12 @@ export default function Login() {
                     style={{ fontSize: "15px" }}
                   />
                 </div>
-                <div className="email mt-6">
-                  <label className="inter-para text-black">Password</label>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="block mt-3 h-12 inter-para pl-3 border border-gray-400 rounded-md w-full"
-                    placeholder="Enter your password"
-                    style={{ fontSize: "15px" }}
-                  />
-                </div>
                 <button
                   type="submit"
                   className="inter-para text-white mt-7 h-15 bg-[#5B6CFF] border-white rounded-md w-full"
                 >
-                  Sign In with Email
+                  Send OTP
                 </button>
-                <a href="/forgot-password" className="block mt-4 text-center text-[#5B6CFF]">
-                  Forgot your password?
-                </a>
-                <p
-                  className="text-center mt-6 inter-para text-gray-600"
-                  style={{ fontSize: "15px" }}
-                >
-                  Don't have an account?{" "}
-                  <a className="text-[#5B6CFF]" href="/register">
-                    Register
-                  </a>
-                </p>
               </div>
             </div>
           </form>
@@ -122,13 +81,12 @@ export default function Login() {
           />
           <a
             className="absolute inter-para w-1/2 pt-12 ml-20 text-white text-right"
-            href="/register"
+            href="/login"
           >
-            Register
+            Login
           </a>
         </div>
       </div>
-      1
     </>
   );
 }
