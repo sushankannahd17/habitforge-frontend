@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaPencil, FaList } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
-import api from "../../api.jsx";
+import api from "../../API.jsx";
 import useAuth from "../../Hooks/useAuth";
 import { CiSearch } from "react-icons/ci";
 import toast from "react-hot-toast";

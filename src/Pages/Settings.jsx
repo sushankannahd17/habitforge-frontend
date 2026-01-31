@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "../Components/Navbar/SideBar";
 import toast from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
-import api from "../api.jsx";
+import api from "../API.jsx";
 import Footer from "../Components/Footer/Footer";
 
 export default function Settings() {

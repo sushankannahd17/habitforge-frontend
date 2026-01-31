@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SiTicktick } from "react-icons/si";
 import useAuth from "../../Hooks/useAuth";
-import api from "../../api.jsx";
+import api from "../../API.jsx";
 
 export default function TotalCompleted() {
     const { user } = useAuth();

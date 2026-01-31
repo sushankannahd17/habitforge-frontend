@@ -1,6 +1,6 @@
 import useAuth from "../../Hooks/useAuth";
 import { GoDotFill } from "react-icons/go";
-import api from "../../api.jsx";
+import api from "../../API.jsx";
 import { useEffect, useState } from "react";
 
 export default function TopInfo() {
