@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LogoImg from "../../public/logo.png";
 import bgVideo from "../assets/bgVideo.webm";
-import api from "../api";
+import api from "../api"
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer/Footer";
