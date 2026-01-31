@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../Api.jsx";
+import api from "../../Api";
 import useAuth from "../../Hooks/useAuth";
 import {
   Chart as ChartJS,
