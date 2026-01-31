@@ -1,147 +1,86 @@
 # 🧠 HabitForge (Frontend)
 
-📌 A modern React frontend for **HabitForge**, a habit-tracking and productivity web app to help users build better routines, track progress, and stay motivated.
+📌 A modern **React + Tailwind** frontend for **HabitForge**, a habit-tracking and productivity web app that helps users build better routines, track progress, and stay motivated.
 
 ---
 
 ## 🚀 Features
 
 ✔ User Authentication (Login / Signup)  
-✔ Forgot Password Flow with OTP Verification  
+✔ Forgot Password with OTP Verification  
 ✔ Interactive Dashboard  
-✔ Habit List & Management  
+✔ Habit Creation & Management  
 ✔ Analytics Overview  
-✔ Profile / Settings  
+✔ Profile / Settings Page  
+✔ Avatar Upload (Cloudinary)  
 ✔ Responsive UI  
-✔ Cloudinary Avatar Upload  
-✔ Clean UI with Tailwind CSS  
+✔ Toast Notifications  
+✔ Clean & Minimal Design  
 
 ---
 
-## 🛠 Built With
+## 🛠 Tech Stack
 
-- **React** – UI Library  
-- **React Router v6** – SPA navigation  
-- **Tailwind CSS** – Utility-first styling  
-- **React Query (optional)** – Async data caching  
-- **Axios** – HTTP client  
-- **React Hot Toast** – Toast notifications  
-- **Cloudinary** – Image uploads  
+- **React (Vite)**
+- **React Router v6**
+- **Tailwind CSS**
+- **Axios**
+- **React Hot Toast**
+- **Cloudinary**
+- **Context API (Auth State)**
 
 ---
 
 ## 📁 Folder Structure
-
 src/
-├── api/ # Axios instance + API utilities
+├── api/ # Axios instance + API calls
 ├── assets/ # Images, videos
 ├── Components/
-│ ├── Navbar/ # Sidebar, top bar, Footer
-│ └── UI/ # Reusable UI parts
+│ ├── Navbar/ # Sidebar, Footer, Layout
+│ └── UI/ # Reusable components
 ├── Hooks/ # Custom hooks (useAuth, etc.)
-├── Pages/ # Screens (Dashboard, Settings, Login, etc.)
-├── Contexts/ # React Context providers
-├── styles/ # Tailwind / custom CSS
+├── Pages/ # Dashboard, Settings, Login, etc.
+├── Contexts/ # Auth context providers
+├── styles/
 ├── App.jsx
 ├── main.jsx
 └── index.css
-
 
 ---
 
 ## 🔧 Installation
 
-1. Clone the frontend repo:
+### 1️⃣ Clone repo
+
 ```bash
 git clone https://github.com/sushankannahd17/habitforge-frontend.git
-Install dependencies:
-
+2️⃣ Install dependencies
 cd habitforge-frontend
 npm install
-Create .env file in root:
+3️⃣ Create .env
+Create a .env file in root:
 
-VITE_API_BASE_URL=http://yourbackendurl.com
-VITE_SOME_KEY=yourkey
-Run the dev server:
-
+VITE_API_BASE_URL=http://localhost:5000
+4️⃣ Run locally
 npm run dev
-🔑 Authentication Flow
-The app handles:
+App runs at:
 
-✔ User login & logout
-✔ Context-based session store (sessionStorage)
-✔ Protected routes
-✔ Redirects if not authenticated
-✔ Forgot Password → OTP → Reset Password
-
-You can extend the auth logic using React Query or JWT refresh token logic.
-
-📦 API Integration
-This frontend expects matching backend routes:
-
-POST /auth/login
-POST /auth/signup
-POST /auth/genOTP
-POST /auth/confirmOTP
-POST /auth/getAccountDetails
-PATCH /auth/modifyAccountDetails
-POST /auth/logout
-Each call uses Axios and toast.promise for feedback.
-
-🖼 Environment Variables
-Add:
-
-VITE_API_BASE_URL=<your backend URL>
-Example:
-
-VITE_API_BASE_URL=https://api.habitforge.app
-📌 Deployment
-You can deploy this on:
-
-🎯 Vercel
-🎯 Netlify
-🎯 Cloudflare Pages
-🎯 Render
-
-Just connect your GitHub and set the environment variables.
-
-🎨 UX
-Tailwind utility-first CSS
-
-Clean, minimalist dashboard
-
-Sidebar navigation
-
-Responsive pages
-
-Toast notifications
-
-Avatar upload & preview
+http://localhost:5173
 
 🧑‍💻 Contributing
-Fork it
 
-Create feature branch
+Fork the repo
 
-Commit your changes
+Create a branch
 
-Push & open a PR
+Commit changes
+
+Open a PR
 
 📜 License
-This project is open-source under the MIT License.
 
-❤️ Made With
-Built with ❤️ by Sushan Kannah D
-Keeping you productive one habit at a time 🚀
+MIT License
 
+❤️ Author
 
----
-
-If you want, I can generate:
-
-🔹 a **README for your backend** as well  
-🔹 a **project overview diagram**  
-🔹 a **Docs site (Storybook / MDX)**  
-
-Just tell me!
-::contentReference[oaicite:0]{index=0}
+Made with ❤️ by Sushan Kannah D
