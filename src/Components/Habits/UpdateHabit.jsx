@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Chooser from "../Dashboard/Chooser";
 import { IoCalendarClearOutline, IoCalendarOutline } from "react-icons/io5";
 import { RxLoop } from "react-icons/rx";
-import api from "../../api";
+import api from "../../api.jsx";
 import { FaPencil } from "react-icons/fa6";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../../api";
+import api from "../../api.jsx";
 import useAuth from "../../Hooks/useAuth";
 import { GoDotFill } from "react-icons/go";
 import toast from "react-hot-toast";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../../api";
+import api from "../../api.jsx";
 import { Dropdown } from "primereact/dropdown";
 
 export default function Chooser({ selectedCategory, setSelectedCategory }) {
