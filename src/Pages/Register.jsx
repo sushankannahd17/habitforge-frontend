@@ -5,6 +5,7 @@ import bgVideo from "../assets/bgVideo.webm";
 import api from "../Api";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import Footer from "../Components/Footer/Footer";
 
 export default function Register() {
   const navigator = useNavigate();
@@ -14,7 +15,7 @@ export default function Register() {
   const { user, setUser } = useAuth();
 
   useEffect(() => {
-    if (user) {
+    if (user.userID) {
       navigator("/dashboard")
     }
   }, [])

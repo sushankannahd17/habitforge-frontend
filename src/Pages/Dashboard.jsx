@@ -35,6 +35,7 @@ export default function Dashboard() {
             <h1 className="inter-heading text-2xl mb-5 ml-5">Today's Habits</h1>
             <List />
           </div>
+          
         </div>
       </div>
     </>

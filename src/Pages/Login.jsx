@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import Footer from "../Components/Footer/Footer";
 
 export default function Login() {
   const navigator = useNavigate();
@@ -13,7 +14,7 @@ export default function Login() {
   const { user, setUser } = useAuth();
 
   useEffect(() => {
-    if (user.userID) navigator("/dashboard");
+    if (user?.userID) navigator("/dashboard");
   }, []);
 
   const handleLogin = (e) => {
@@ -128,7 +129,6 @@ export default function Login() {
           </a>
         </div>
       </div>
-      1
     </>
   );
 }

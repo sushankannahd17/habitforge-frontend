@@ -1,6 +1,6 @@
 import useAuth from "../../Hooks/useAuth";
 import { GoDotFill } from "react-icons/go";
-import api from "../../Api";
+import api from "../../api";
 import { useEffect, useState } from "react";
 
 export default function TopInfo() {
@@ -25,7 +25,7 @@ export default function TopInfo() {
   return (
     <div>
       <h1 className="inter-heading text-3xl ml-20 mt-10">
-        {timeStatus.status}, {user?.name}!👋
+        {timeStatus.status}!👋
       </h1>
       <p
         className="inter-para ml-20 mt-3 text-gray-400 flex"

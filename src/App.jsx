@@ -10,6 +10,7 @@ import Habits from "./Pages/Habits";
 import Analytics from "./Pages/Analytics";
 import ForgotPassword from "./Pages/ForgotPassword";
 import OTPVerify from "./Pages/OTPVerify";
+import Settings from "./Pages/Settings";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/analytics" element={<Analytics />}/>
           <Route path="/forgot-password" element={<ForgotPassword />}/>
           <Route path="/verify-otp" element={<OTPVerify />}/>
+          <Route path="/settings" element={<Settings />}/>
         </Routes>
       </BrowserRouter>
     </>
