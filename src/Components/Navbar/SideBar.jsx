@@ -4,7 +4,7 @@ import { RiListCheck3 } from "react-icons/ri";
 import { VscGraph } from "react-icons/vsc";
 import { FaGear } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
-import api from "../../API.jsx";
+import api from "../../Api.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";

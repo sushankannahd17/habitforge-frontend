@@ -1,5 +1,5 @@
 import { FaFire } from "react-icons/fa";
-import api from "../../API.jsx";
+import api from "../../Api.jsx";
 import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 

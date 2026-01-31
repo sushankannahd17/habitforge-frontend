@@ -1,5 +1,5 @@
 import { CiStar } from "react-icons/ci";
-import api from "../../API.jsx";
+import api from "../../Api.jsx";
 import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 

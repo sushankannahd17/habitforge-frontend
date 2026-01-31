@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import LogoImg from "../../public/logo.png";
 import bgVideo from "../assets/bgVideo.webm";
-import api from "../API.jsx";
+import api from "../Api.jsx";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import Footer from "../Components/Footer/Footer";

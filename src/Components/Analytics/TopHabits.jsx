@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../../API.jsx";
+import api from "../../Api.jsx";
 import useAuth from "../../Hooks/useAuth";
 
 export default function TopHabits({ month, year }) {
