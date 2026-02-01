@@ -61,9 +61,13 @@ http://localhost:5173
 ---
 
 🧑‍💻 Contributing
+
 Fork the repo
+
 Create a branch
+
 Commit changes
+
 Open a PR
 
 ---
