@@ -19,7 +19,7 @@ export default function PerfectDays({ month, year }) {
     };
 
     getPerfectDays();
-  }, [user, month, year]);
+  }, [user.userID, month, year]);
 
   return (
     <div className="w-1/6 ml-10 mt-10 h-40 bg-white">

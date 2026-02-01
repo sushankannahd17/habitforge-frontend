@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!user.userID) navigator("/login");
-  }, []);
+  }, [user.userID]);
 
   return (
     <>

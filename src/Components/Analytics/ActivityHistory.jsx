@@ -56,7 +56,7 @@ export default function ActivityHistory({ month, year }) {
     };
 
     fetchActivityData();
-  }, [user, month, year]);
+  }, [user.userID, month, year]);
 
   const labels = activityData.map((d) => d.day);
   const values = activityData.map((d) => d.value);

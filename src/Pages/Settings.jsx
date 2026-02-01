@@ -29,7 +29,7 @@ export default function Settings() {
 
   useEffect(() => {
     fetchDetails();
-  }, []);
+  }, [user.userID]);
 
   const handleSave = (e) => {
     e.preventDefault();

@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
     if (!user.userID) {
       sessionStorage.removeItem("userID");
     }
-  }, [user.userID, user.name, user.email]);
+  }, [user.userID]);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

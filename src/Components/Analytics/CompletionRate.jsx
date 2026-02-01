@@ -19,7 +19,7 @@ export default function CompletionRate({ month, year }) {
     };
 
     getRate()
-  }, []);
+  }, [user.userID]);
 
   return (
     <div className="w-1/6 ml-30 mt-10 h-40 bg-white">

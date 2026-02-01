@@ -19,14 +19,14 @@ export default function Sidebar() {
   const [profilePicURL, setProfilePicURL] = useState("");
 
   useEffect(() => {
-    api.post("/auth/fetchSidebarDetails", { userID: user.userID})
+    api.post("/auth/fetchSidebarDetails", { userID: user.userID })
       .then((res) => {
         setEmail(res.data.email)
         setName(res.data.name)
         setProfilePicURL(res.data.profilePic)
       })
       .catch((err) => toast.error("Error: " + err.response?.data?.message))
-  }, [])
+  }, [user.userID])
 
   const avatarPreview = profilePicURL ? profilePicURL : "https://res.cloudinary.com/doea9ukcf/image/upload/v1769871937/profilePic_s4dznb.jpg";
 
